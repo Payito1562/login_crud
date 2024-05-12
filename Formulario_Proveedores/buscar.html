@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Proveedor por RFC</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            min-height: 100vh;
+            background: url('../3.jpg');
+            background-position: center;
+            background-size: cover;
+        }
+
+        .container {
+            text-align: center;
+            color: #fffbfb;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff02;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        div {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccccccf6;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Buscar Proveedor por RFC</h1>
+    <form id="searchForm">
+        <div>
+            <label for="rfc">RFC del Proveedor:</label>
+            <input type="text" id="rfc" name="rfc">
+        </div>
+        <div>
+            <button type="button" onclick="buscarProveedor()">Buscar Proveedor</button>
+            <button type="button" onclick="window.location.href = './formulario2.html'">Regresar</button>
+        </div>
+    </form>
+
+    <div id="resultadoBusqueda"></div>
+
+    <script>
+        function buscarProveedor() {
+            var rfc = document.getElementById("rfc").value;
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    document.getElementById("resultadoBusqueda").innerHTML = xhr.responseText;
+                }
+            };
+            xhr.open("POST", "buscar_proveedor.php", true);
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhr.send("rfc=" + rfc);
+        }
+    </script>
+</body>
+</html>
+

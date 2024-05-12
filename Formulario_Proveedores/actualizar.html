@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizar Proveedor</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            min-height: 100vh;
+            background: url('../3.jpg');
+            background-position: center;
+            background-size: cover;
+        }
+
+        .container {
+            text-align: center;
+            color: #fffbfb;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff02;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        div {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccccccf6;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Actualizar Proveedores</h1>
+    <form id="updateForm" method="post">
+        <div>
+            <label for="codigo">Código de Proveedor:</label>
+            <input type="text" id="codigo" name="codigo">
+        </div>
+        <div>
+            <label for="nombre">Nombre del Proveedor:</label>
+            <input type="text" id="nombre" name="nombre">
+        </div>
+        <div>
+            <label for="apellidos">Apellidos:</label>
+            <input type="text" id="apellidos" name="apellidos">
+        </div>
+        <div>
+            <label for="rfc">RFC:</label>
+            <input type="text" id="rfc" name="rfc">
+        </div>
+        <div>
+            <label for="curp">CURP:</label>
+            <input type="text" id="curp" name="curp">
+        </div>
+        <div>
+            <label for="correo">Correo:</label>
+            <input type="text" id="correo" name="correo">
+        </div>
+        <div>
+            <label for="telefono">Teléfono:</label>
+            <input type="text" id="telefono" name="telefono">
+        </div>
+        <div>
+            <label for="empresa">Empresa:</label>
+            <input type="text" id="empresa" name="empresa">
+        </div>
+        <div id="mensaje"></div>
+        <div>
+            <button type="submit">Actualizar Proveedor</button>
+            <button type="button" onclick="window.location.href = './formulario2.html'">Regresar</button>
+        </div>
+    </form>
+
+    <script>
+        document.getElementById("updateForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Evitar que el formulario se envíe automáticamente
+
+            // Obtener los datos del formulario
+            var formData = new FormData(this);
+
+            // Realizar la solicitud AJAX para enviar los datos al servidor
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "actualizar_proveedor.php", true);
+            xhr.onload = function() {
+                if (xhr.status == 200) {
+                    // Mostrar mensaje de actualización exitosa
+                    document.getElementById("mensaje").innerHTML = "Actualización exitosa";
+                } else {
+                    // Mostrar mensaje de error si ocurre algún problema
+                    document.getElementById("mensaje").innerHTML = "Error al actualizar el proveedor";
+                }
+            };
+            xhr.send(formData); // Enviar los datos del formulario al servidor
+        });
+    </script>
+</body>
+    
+</body>
+</html>

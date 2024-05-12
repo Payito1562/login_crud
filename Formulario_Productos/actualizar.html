@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizar Producto</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            min-height: 100vh;
+            background: url('../3.jpg');
+            background-position: center;
+            background-size: cover;
+        }
+
+        .container {
+            text-align: center;
+            color: #fffbfb;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff02;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        div {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccccccf6;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Actualizar Producto</h1>
+        <div id="mensaje"></div> <!-- Aquí se mostrará el mensaje -->
+        <form id="updateProductForm">
+            <div>
+                <label for="codigo">Código de Producto:</label>
+                <input type="text" id="codigo" name="codigo">
+            </div>
+            <div>
+                <label for="nombre">Nombre del Producto:</label>
+                <input type="text" id="nombre" name="nombre">
+            </div>
+            <div>
+                <label for="presentacion">Presentación:</label>
+                <input type="text" id="presentacion" name="presentacion">
+            </div>
+            <div>
+                <label for="marca">Marca:</label>
+                <input type="text" id="marca" name="marca">
+            </div>
+            <div>
+                <label for="precio">Precio:</label>
+                <input type="text" id="precio" name="precio">
+            </div>
+            <div>
+                <label for="caducidad">Fecha de Caducidad:</label>
+                <input type="date" id="caducidad" name="caducidad">
+            </div>
+            <div>
+                <button type="button" onclick="actualizarProducto()">Actualizar</button>
+                <button type="button" onclick="window.location.href = './formulario1.html'">Regresar</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+
+        function actualizarProducto() {
+            var formData = new FormData(document.getElementById("updateProductForm"));
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    document.getElementById("mensaje").innerHTML = xhr.responseText;
+                }
+            };
+            xhr.open("POST", "actualizar_producto.php", true);
+            xhr.send(formData);
+        }
+    </script>
+</body>
+</html>

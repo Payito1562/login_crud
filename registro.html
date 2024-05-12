@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro CRUD</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <section>
+        <div class="contenedor">
+            <div class="formulario">
+                <form action="insertar.php" method="POST">
+                    <h1>Crear una cuenta</h1>
+
+                    <div class="input-contenedor">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" name="Nombre" id="Nombre" required>
+                        <label for="Nombre">Nombre</label> 
+                    </div>
+
+                    <div class="input-contenedor">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" name="Correo" id="Correo" required>
+                        <label for="Correo">Email</label> 
+                    </div>
+
+                    <div class="input-contenedor">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" name="Contraseña" id="Contraseña" required>
+                        <label for="Contraseña">Contraseña</label> 
+                    </div>
+
+                    <button type="submit">Registrarse</button> 
+                </form>
+                <div class="iniciar-sesion"> 
+                    <p>¿Ya tienes una cuenta? <a href="login.html">Iniciar sesión</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
